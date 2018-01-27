@@ -102,7 +102,7 @@ stylesheet =
         [ Style.style Title
             [ Color.text yellow
             , Color.background black
-            , Font.size 100
+            , Font.size 150
             , Font.center
               -- all units given as px
             ]
