@@ -10,6 +10,11 @@ module Main exposing (..)
 import Date
 import Html exposing (Html, program)
 import Time
+import Element exposing (el)
+import Style
+import Style.Color as Color
+import Style.Font as Font
+import Color exposing (..)
 
 
 main =
@@ -47,7 +52,10 @@ view model =
         timeText =
             (intToPadStr hours) ++ " : " ++ (intToPadStr mins) ++ " . " ++ (intToPadStr hundredthsOfMins)
     in
-        Html.text timeText
+        Element.layout stylesheet <|
+            el Title
+                []
+                (Element.text timeText)
 
 
 secsToHundredths : Float -> Int
@@ -82,3 +90,18 @@ init =
 subs : Model -> Sub Msg
 subs model =
     Time.every (Time.minute / 500) Tick
+
+
+type MyStyles
+    = Title
+
+
+stylesheet =
+    Style.styleSheet
+        [ Style.style Title
+            [ Color.text white
+            , Color.background black
+            , Font.size 100
+              -- all units given as px
+            ]
+        ]
