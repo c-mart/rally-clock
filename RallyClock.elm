@@ -11,6 +11,7 @@ import Date
 import Html exposing (Html, program)
 import Time
 import Element exposing (el)
+import Element.Attributes as ElAttributes
 import Style
 import Style.Color as Color
 import Style.Font as Font
@@ -52,9 +53,9 @@ view model =
         timeText =
             (intToPadStr hours) ++ " : " ++ (intToPadStr mins) ++ " . " ++ (intToPadStr hundredthsOfMins)
     in
-        Element.layout stylesheet <|
+        Element.viewport stylesheet <|
             el Title
-                []
+                [ ElAttributes.width (ElAttributes.percent 100), ElAttributes.height (ElAttributes.percent 99.9999), ElAttributes.verticalCenter ]
                 (Element.text timeText)
 
 
@@ -99,9 +100,10 @@ type MyStyles
 stylesheet =
     Style.styleSheet
         [ Style.style Title
-            [ Color.text white
+            [ Color.text yellow
             , Color.background black
             , Font.size 100
+            , Font.center
               -- all units given as px
             ]
         ]
